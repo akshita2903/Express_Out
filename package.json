@@ -1,0 +1,18 @@
+{
+  "name": "expressview",
+  "version": "1.0.0",
+  "description": "An App to express yourself",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon backend/index.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm start\" \"npm run client\""
+  },
+  "author": "Akshita",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.1.0",
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
