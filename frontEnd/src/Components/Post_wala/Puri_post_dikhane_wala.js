@@ -3,7 +3,8 @@ import Banner from '../HomePage/Banner'
 import {makeStyles,Box,Typography,Grid} from '@material-ui/core';
 import BorderColorTwoToneIcon from '@material-ui/icons/BorderColorTwoTone';
  import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
- import { Link } from 'react-router-dom'
+ import { Link,useLocation } from 'react-router-dom'
+ import axios from 'axios'
 const useStyles=makeStyles({
   
 
@@ -31,6 +32,20 @@ margin:'20px 0',
 export default function Puri_post_dikhane_wala() {
 
    const classes=useStyles();
+   const[detail,setDetail]=React.useState({});
+   const location=useLocation();
+  //  console.log(location.pathname.split("/")[2]);
+   const id=location.pathname.split("/")[2];
+   const fetchPosts =async()=>{
+    const res=await axios.get(`/api/post/detail/${id}`)
+    //console.log(res.data);
+  setDetail(res.data)
+
+    }
+      React.useEffect(()=>{
+    fetchPosts();
+    
+      },[])
   return (
 <>
 
@@ -42,17 +57,12 @@ export default function Puri_post_dikhane_wala() {
   </Link>
 <DeleteSharpIcon color='secondary' className={classes.icons} />
   </Grid>
-  <Typography className={classes.heading}>Title</Typography>
+  <Typography className={classes.heading}>{detail.title}</Typography>
  <Box className={classes.subheading}>
-   <Typography>Author:<span style={{fontWeight:600}}>aks</span></Typography>
-   <Typography style={{marginLeft:'auto'}}>Today Date</Typography>
+   <Typography>Author:<span style={{fontWeight:600}}>{detail.name}</span></Typography>
+   {/* <Typography style={{marginLeft:'auto'}}>Today Date</Typography> */}
  </Box>
- <Typography>Post ki DEtails
- Post ki DEtails Post ki DEtails Post ki DEtails Post ki DEtailsPost ki DEtails
- Post ki DEtails Post ki DEtails Post ki DEtails Post ki DEtails
- Post ki DEtails Post ki DEtails Post ki DEtailsv variantPost ki DEtails
- Post ki DEtails
- Post ki DEtails
+ <Typography>{detail.description}
  </Typography>
   </Box>
 

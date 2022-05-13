@@ -5,7 +5,7 @@ import {Box, Typography,makeStyles} from '@material-ui/core'
 const useStyle=makeStyles({
 box_design:{
   height:350,
-  margin:10,
+  margin:20,
   borderRadius:10,
   border:'1px solid #d3cede',
   display:'flex',
@@ -48,9 +48,9 @@ export default function Post_daalne_or_show_walaPage(props) {
   
    <Box className={classes.box_design}>
     <img src={url} alt='post' className={classes.image}></img>
-    <Typography className={classes.text}>{props.category_type}</Typography>
+   
     <Typography className={classes.title}>{props.title}</Typography>
-    <Typography className={classes.text}>Author Name</Typography>
+    <Typography className={classes.text}>{props.name}</Typography>
     <Typography className={classes.desc}>{props.description}</Typography>
 
    </Box>

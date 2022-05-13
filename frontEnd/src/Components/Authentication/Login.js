@@ -40,7 +40,8 @@ if(data.status===300)
   alert("Email does not exist or password is incorrect");
   return ;
 }
-alert("Login Successfull");
+window.alert("Login Successfull");
+window.location.replace("/")
     }
     catch(err){
       console.log("Error: "+err);
@@ -60,7 +61,15 @@ alert("Login Successfull");
       
       <button type='submit' onClick={handleSubmit}>login</button>
      
-      <span>New User ? </span>
+     <h3   className="cp_fi">
+       Forgot Password?
+     
+      <Link to='/changePass' style={{textDecoration:'none',color:'inherit'}}>
+<h4>Change Password</h4>
+
+ </Link></h3>
+
+ <span>New User ? </span>
       <Link to='/signup' style={{textDecoration:'none',color:'inherit'}}>
 
  <button className='signin'>Sign up</button>

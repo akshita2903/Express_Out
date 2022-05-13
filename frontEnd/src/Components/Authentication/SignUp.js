@@ -53,7 +53,7 @@ if(data.status===400){
   return ;
 }
 window.alert("Sign Up Successfully");
-<Login/>
+window.location.replace("/login")
 
  //localStorage.setItem("SignUp info",JSON.stringify(data));
     }

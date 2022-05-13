@@ -1,6 +1,7 @@
 import React from 'react'
+// import {useNavigate} from 'react-router-dom'
 import {Box,makeStyles,Typography,FormControl,InputBase,Button, TextareaAutosize} from '@material-ui/core'
-
+import axios from 'axios'
 const useStyle=makeStyles((theme)=>({
 image:{
   background:`url(${'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGxhcHRvcHxlbnwwfHwwfHw%3D&w=1000&q=80'})`
@@ -46,19 +47,21 @@ marginTop:'5px',
     }
     
   }));
-  const intialValue={
-    title:'',
-  description:'',
-  username:'ak29',
-  categories:'all'
-  }
+ 
 
 export default function Create_Wali() {
    const classes=useStyle();
-   const[orPost,setPost]=React.useState(intialValue);
-  // async function savePost(){
-  //    await Create_WaliService(orPost);
-  //  }
+  //  const history=useNavigate();
+   const[orPost,setPost]=React.useState({
+     title:'',
+     description:'',
+     name:''
+   });
+   async function handleSubmit(e){
+    e.preventDefault();
+    const{title,description,name}=orPost;
+    
+ }
    function onChangetit_desc(event){
 setPost({...orPost,[event.target.name]:event.target.value})
   }
@@ -73,7 +76,7 @@ setPost({...orPost,[event.target.name]:event.target.value})
 <InputBase placeholder='title' className={classes.titlearea}  onChange={e=> onChangetit_desc(e)}
 name="title"
 />
-<Button variant='contained' color='primary' >Post</Button>
+<Button variant='contained' color='primary' onClick={handleSubmit}>Post</Button>
    </FormControl>
    <TextareaAutosize className={classes.textarea} minRows={7} placeholder='Write what u feel like'
    name="description" onChange={(e)=>onChangetit_desc(e)}/>
