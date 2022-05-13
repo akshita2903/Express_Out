@@ -3,7 +3,7 @@ const asyncHandler=require('express-async-handler');
 const router=express.Router();
 const User=require('../models/userModel');
 const generateToken = require('../util/generateToken');
-
+//router.use(cookie);
 router.post('/signup',asyncHandler(async(req,res)=>{
 
 
@@ -84,4 +84,14 @@ catch(err){
     console.log(err);
 }
 }));
+//Update
+// router.put('/:id',async(req,res)=>{
+//     const user= await User.findById(req.user._id);
+//     if(user){
+//         user.name=req.body.name || user.name;
+//         user.email
+//     }
+// })
+
+router.post('/logOut')
 module.exports=router;

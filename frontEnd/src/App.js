@@ -8,10 +8,11 @@ import Create_Wali from './Components/Post_wala/Create_Wali';
 import Update from './Components/Post_wala/Update';
 import About from './Components/HomePage/About'
 import Login from './Components/Authentication/Login'
-
+import OwnPosts from './Components/HomePage/OwnPosts';
 import SignUp from './Components/Authentication/SignUp'
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 function App() {
+  const user=false
   return (
    <>
    <BrowserRouter>
@@ -20,9 +21,10 @@ function App() {
    <Box style={{margin :64}}></Box>
    <Routes>
      <Route exact path="/" element={ <HomePage/> } ></Route>
-   <Route path='details' element={<Puri_post_dikhane_wala/>}></Route>
-   <Route path='create' element={<Create_Wali/>}></Route>
-   <Route path='/update' element={<Update/>}></Route>
+     <Route path="userPost" element={ user?<OwnPosts/>:<Login/> } ></Route>
+   <Route path='/details/:id' element={<Puri_post_dikhane_wala/>}></Route>
+   <Route path='/create' element={user?<Create_Wali/>:<Login/>}></Route>
+   <Route path='/update' element={user?<Update/>:<Login/>}></Route>
    <Route path='/about' element={<About/>}> </Route>
    <Route path='/login' element={<Login/>}></Route>
    <Route path='/signup' element={<SignUp/>}></Route>

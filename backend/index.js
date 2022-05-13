@@ -1,6 +1,8 @@
 const express=require('express');
+const cookie=require('cookie-parser')
 const sample=require("./testing_data/sample")
 const authroute=require('./routes/authroute')
+const postroute=require('./routes/postroute')
 const dotenv=require('dotenv');
 const app=express();
 dotenv.config();
@@ -21,14 +23,10 @@ app.get("/api/notes",(req,res)=>{
 });
 
 
-app.get('/api/notes/:category_type',(req,res)=>{
-    const s_dat=sample.find((n)=> n.category_type == req.params.category_type);
-    console.log(s_dat);
-res.send(s_dat);
-});
+
 //routers
  app.use('/api/auth',authroute);
-app.use(notFound);
-app.use(errorHandler);
+ app.use('/api/post',postroute);
+
 //creating first server
 app.listen(5000,console.log("Server started on PORT 5000"));
