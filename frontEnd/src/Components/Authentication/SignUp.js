@@ -1,7 +1,8 @@
 import React from 'react'
 import './login.css'
 import axios from 'axios';
-import Login from './Login';
+
+
 export default function SignUp() {
   const [detail,setDetail]=React.useState({
     name:'',
@@ -9,7 +10,18 @@ export default function SignUp() {
     password:"",
     confirmPassword:""
   });
-  const[login,setLogin]=React.useState();
+
+  const[text,setText]=React.useState("password");
+const[E,setE]=React.useState("xyx");
+const[P,setP]=React.useState("");
+const[CP,setCP]=React.useState("");
+const[N,setN]=React.useState("");
+const[display,setDisplay]=React.useState('show');
+  
+  function handleType(e){
+    setText((p)=> p === "password"?"text":"password");
+    setDisplay((p)=> p === "show" ?"hide":"show");
+  }
   function handleChange(e){
 const {name,value}=e.target;
 setDetail((prev)=>{
@@ -22,13 +34,25 @@ setDetail((prev)=>{
   e.preventDefault();
     const {name,email,password,confirmPassword}=detail;
     console.log(name+" "+email+" "+password);
-    if(!name || !email || !password || !confirmPassword)
-    {
-      window.alert("Please Enter all the details");
+    if(!name){
+      setN("User Name is Required");
+      return ;
+    }
+    if(!email){
+      setE("Email is Required");
+      return ;
+    }
+    if(!password){
+      setP("Password is Required");
+      return ;
+    }
+    if(!confirmPassword){
+   setCP("Confirm Password is Required");
+   return ;
     }
     if(confirmPassword!== password){
-      window.alert("Password And confirm Password are not same");
-      return ;
+     CP("Confirm Password must be same as Password");
+     return ;
     }
     try{
       console.log("try")
@@ -37,25 +61,28 @@ const config={
     "Content-Type":"application/json"
   }
 }
-const{data}=await axios.post(
+const res=await axios.post(
   "/api/auth/signup",
   {
  name, email,password
 },
 config);
-if(data.status === 300)
+if(res.status === 201)
 {
-  window.alert("Email already  Exists");
+ setE("Email already exists");
   return ;
 }
-if(data.status===400){
-  window.alert("Some Error Occured,Please try after sometime");
+if(res.status===400){
+CP("Some Error occur ,try after sometime or refresh the Page");
   return ;
 }
+else{
 window.alert("Sign Up Successfully");
+setE(""); setP(""); setCP("");
 window.location.replace("/login")
 
  //localStorage.setItem("SignUp info",JSON.stringify(data));
+}
     }
     catch(err){
       console.log("Error: "+err);
@@ -67,14 +94,21 @@ window.location.replace("/login")
   <div className="form">
     <form className="login-form">
       <span className="material-icons">Sign Up</span>
-      <input type="text" placeholder="Name"  vale={detail.name} name='name' onChange={handleChange}required='true'/>
-      <input type="email" placeholder="example@gmail.com" value={detail.email} name='email' onChange={handleChange} required='true'/>
-      <input type="password" placeholder="password" value={detail.password} name='password' onChange={handleChange} required ='true'>
+      <h5 className="error" >{N}</h5 >
+      <input type="text" placeholder="Name"  vale={detail.name} name='name' onChange={handleChange}/>
+      <h5 className="error" >{E}</h5 >
+      <input type="email" placeholder="example@gmail.com" value={detail.email} name='email' onChange={handleChange} />
+      <h5 className="error" >{P}</h5 >
+      <h5 className='toggle' onClick={handleType}>{display}</h5>
+      <input type={text} placeholder="password" value={detail.password} name='password' onChange={handleChange} >
       {/* <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> */}
       </input>
-      <input type="password" placeholder="ConfirmPassword" value={detail.confirmPassword} name='confirmPassword' onChange={handleChange} required ='true'>
+      <h5 className="error" >{CP}</h5 >
+      <h5 className='toggle' onClick={handleType}>{display}</h5>
+      <input type={text} placeholder="ConfirmPassword" value={detail.confirmPassword} name='confirmPassword' onChange={handleChange} >
       {/* <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> */}
       </input>
+      
     
      <button type='submit' onClick={handleSubmit}className='signin'>Sign up</button>
     </form>  
