@@ -12,8 +12,10 @@ import OwnPosts from './Components/HomePage/OwnPosts';
 import SignUp from './Components/Authentication/SignUp'
 import ChangePassword from './Components/Authentication/ChangePassWord';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from './Context/Context';
 function App() {
-  const user=false
+  const {user}=useContext(Context);
   return (
    <>
    <BrowserRouter>
