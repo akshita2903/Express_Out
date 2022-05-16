@@ -77,12 +77,25 @@ background:#fff;
     border-style: 2px solid #4b6cb7;
     border:2px solid #4b6cb7;
 }
-.cp_fi{
+.cp_fi { 
   /* display:inline-block; */
+  margin-top:3px;
   align-items: center;
-}
-h4:hover{
-  
   border:2px solid #4b6cb7;
-  color:aqua;
+ 
+}
+
+  
+
+.toggle{
+  margin-top:10px;
+  position:absolute;
+  right:48px;
+  color:#0f0f0e88;
+}
+.error{
+  margin-top: 40px;
+  font-size: 10px;
+  color:red;
+  position:absolute;
 }

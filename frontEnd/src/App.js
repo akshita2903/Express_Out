@@ -10,6 +10,7 @@ import About from './Components/HomePage/About'
 import Login from './Components/Authentication/Login'
 import OwnPosts from './Components/HomePage/OwnPosts';
 import SignUp from './Components/Authentication/SignUp'
+import ChangePassword from './Components/Authentication/ChangePassWord';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 function App() {
   const user=false
@@ -27,6 +28,7 @@ function App() {
    <Route path='/update' element={user?<Update/>:<Login/>}></Route>
    <Route path='/about' element={<About/>}> </Route>
    <Route path='/login' element={<Login/>}></Route>
+   <Route path='/changePassW' element={<ChangePassword/>}></Route>
    <Route path='/signup' element={<SignUp/>}></Route>
    {/* <Puri_post_dikhane_wala/> */}
    </Routes>
