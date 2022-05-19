@@ -18,13 +18,14 @@ export const LoginFailure=()=>({
 export const LogOut=()=>({
     type:"LOGOUT",
 });
-export const UpdateStart=(userCredentials)=>({
-    type:"UPDATE_START",
-})
-export const UpdateSuccess=(user)=>({
-    type:"UPDATE_SUCCESS",
-})
-export const UpdateFailure=(userCredentials)=>({
-    type:"UPDATE_FAILED",
-})
+// export const UpdateStart=(userCredentials)=>({
+//     type:"UPDATE_START",
+// })
+// export const UpdateSuccess=(user)=>({
+//     type:"UPDATE_SUCCESS",
+//     payload:user,
+// })
+// export const UpdateFailure=(userCredentials)=>({
+//     type:"UPDATE_FAILED",
+// })
 
