@@ -1,7 +1,7 @@
 import React from 'react'
 import './login.css'
 import axios from 'axios';
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function SignUp() {
   const [detail,setDetail]=React.useState({
@@ -12,14 +12,16 @@ export default function SignUp() {
   });
 
   const[text,setText]=React.useState("password");
-const[E,setE]=React.useState("xyx");
+
+const[E,setE]=React.useState("");
 const[P,setP]=React.useState("");
+const[isLoading,setLoading]=React.useState();
 const[CP,setCP]=React.useState("");
 const[N,setN]=React.useState("");
 const[display,setDisplay]=React.useState('show');
   
   function handleType(e){
-    setText((p)=> p === "password"?"text":"password");
+    setText((p)=> p === "password"?"text":"password" );
     setDisplay((p)=> p === "show" ?"hide":"show");
   }
   function handleChange(e){
@@ -56,6 +58,7 @@ setDetail((prev)=>{
     }
     try{
       console.log("try")
+      setLoading(true);
 const config={
   headers:{
     "Content-Type":"application/json"
@@ -67,6 +70,12 @@ const res=await axios.post(
  name, email,password
 },
 config);
+setLoading(false)
+if(res.status === 202){
+  
+  setN("User name must be Unique");
+  return ;
+}
 if(res.status === 201)
 {
  setE("Email already exists");
@@ -109,7 +118,7 @@ window.location.replace("/login")
       {/* <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> */}
       </input>
       
-    
+    {isLoading ?<CircularProgress/>:""}
      <button type='submit' onClick={handleSubmit}className='signin'>Sign up</button>
     </form>  
   </div>

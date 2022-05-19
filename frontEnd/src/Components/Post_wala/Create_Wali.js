@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import {Context} from '../../Context/Context';
+
 // import {useNavigate} from 'react-router-dom'
 import {Box,makeStyles,Typography,FormControl,InputBase,Button, TextareaAutosize} from '@material-ui/core'
 import axios from 'axios'
@@ -51,15 +53,40 @@ marginTop:'5px',
 
 export default function Create_Wali() {
    const classes=useStyle();
+   const{user}=useContext(Context);
+const[isLoading,setLoading]=React.useState();
   //  const history=useNavigate();
    const[orPost,setPost]=React.useState({
      title:'',
      description:'',
-     name:''
+    
    });
    async function handleSubmit(e){
     e.preventDefault();
-    const{title,description,name}=orPost;
+    const{title,description}=orPost;
+  
+    try{
+      
+      const config={
+        headers:{
+          "Content-Type":"application/json"
+        }
+      }
+      const res=await axios.post(
+        "/api/post/create",
+        {
+       name:user.name,
+      
+       title,description
+      },
+      config);
+    
+window.location.replace('/userPost');
+    }
+    catch(err){
+alert("try later!!");
+window.location.replace('/');
+    }
     
  }
    function onChangetit_desc(event){
@@ -74,11 +101,11 @@ setPost({...orPost,[event.target.name]:event.target.value})
    <FormControl className={classes.form}>
 
 <InputBase placeholder='title' className={classes.titlearea}  onChange={e=> onChangetit_desc(e)}
-name="title"
+name="title" 
 />
 <Button variant='contained' color='primary' onClick={handleSubmit}>Post</Button>
    </FormControl>
-   <TextareaAutosize className={classes.textarea} minRows={7} placeholder='Write what u feel like'
+   <TextareaAutosize className={classes.textarea} minRows={7} placeholder='Write what u feel like or What you wanna express Out'
    name="description" onChange={(e)=>onChangetit_desc(e)}/>
    </Box>
   )

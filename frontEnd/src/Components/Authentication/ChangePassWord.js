@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './login.css';
+import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from 'axios';
+import { Context } from '../../Context/Context';
+
  function ChangePassword() {
   const[text,setText]=React.useState("Password");
 
-
+const{dispatch}=useContext(Context);
   const[display,setDisplay]=React.useState("show");
- 
+ const[isLoading,setLoading]=React.useState();
   function handleType(e){
     setText((p)=> p === "password"?"text":"password");
     setDisplay((p)=> p === "show" ?"hide":"show");
@@ -39,18 +42,24 @@ setDetail((prev)=>{
     return ;
     }
     try{
+      setLoading(true);
       const res=await axios.put('/api/auth/changePassW',{
         email,
         password,
       });
+      setLoading(false);
       if(res.status === 201){
+        dispatch({type:"UPDATE_FAILED"});
         setEmailW("Email does not exist");
         return ;
       }
       if(res.status ===401){
+        dispatch({type:"UPDATE_FAILED"});
+
         setCPW("Something Went Wrong!!,Try afetr sometime :)");
         return ;
       }
+      dispatch({type:"UPDATE_SUCCESS`",payload:res.data})
       setCPW("");
       setEmailW('');
       window.location.replace('/login');
@@ -80,7 +89,8 @@ setDetail((prev)=>{
       {/* <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> */}
      
       </input>
-      
+         
+    {isLoading ?<CircularProgress/>:""}
       <button type='submit' onClick={handleSubmit}>Reset PassWord</button>
      
    
