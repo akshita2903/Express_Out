@@ -29,4 +29,4 @@ app.get("/api/notes",(req,res)=>{
  app.use('/api/post',postroute);
 
 //creating first server
-app.listen(5000,console.log("Server started on PORT 5000"));
+app.listen(process.env.PORT,console.log("Server started on PORT 5000"));
