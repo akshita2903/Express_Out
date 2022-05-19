@@ -9,6 +9,10 @@ router.post('/signup',asyncHandler(async(req,res)=>{
 
 const{name,email,password}=req.body;
 const userExist=await User.findOne({email});
+const nameExist=await User.findOne({name});
+if(nameExist){
+    res.status(202).send("Name Already Exsist");
+}
 if(userExist)
 {
     console.log("Already Exist");
@@ -76,7 +80,7 @@ catch(err){
         res.status(201).send("Email Not exist");
     }
    else{
-       console.log(user._id);
+    //    console.log(user._id);
 if(req.body.password){
    user.password=req.body.password;
 }
@@ -102,5 +106,5 @@ res.status(401).send("Something Went Wrong!!");
 }
  );
 
-router.post('/logOut')
+
 module.exports=router;

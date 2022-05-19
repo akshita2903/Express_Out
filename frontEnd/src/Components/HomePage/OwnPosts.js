@@ -1,43 +1,68 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
-import Post_daalne_or_show_walaPage from './Post_daalne_or_show_walaPage'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Posts from './Posts'
 import Banner from './Banner'
 //import {useNavigate} from 'react-router-dom'
-import {Grid,Button} from '@material-ui/core'
+import {Grid,Button,makeStyles} from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import { Context } from '../../Context/Context'
+const useStyle=makeStyles({
+  
+upward:{
+  backgroundColor: 'white',
+  borderRadius: '50%',
+  border: '1px solid grey',
+  padding: '10px',
+  float:'right'
+
+ },
+
+});
 function OwnPosts() {
-
+const classes=useStyle();
 //const history=useNavigate();
+const{user}=useContext(Context);
 
-  const[postss,setPostss]=React.useState([]);
-  const fetchPosts =async()=>{
+const[C,setC]=React.useState("");
+  const[posts,setPostss]=React.useState([]);
+  const[isLoading,setLoading]=React.useState();
+ const fetchPost=async ()=>{
+   console.log(user._id);
+   setLoading(true);
+  const res=await axios.get(`/api/post/myPosts/${user._id}`
+);
+setLoading(false)
+  const{data}=res;
+  if(res.status === 201){
+    setC("No Thoughts,Create It");
+    window.location.replace('/create');
+  }
+  if(res.status === 200){
+    setPostss(data);
+  }
+ }
+ React.useEffect(()=>{
+   fetchPost();
+ },[]);
 
  
-  }
-    React.useEffect(()=>{
-  fetchPosts();
-    },[])
   // let p=['a','b','c','d','e','f','g','h','i','j','k']
   return (
     <><Banner/>
     <Link to='/' style={{textDecoration:'none',color:'inherit'}}>
 <Button  variant='contained'>Back</Button>
 </Link>
-    {
-    postss.map(pp => (
-      <Grid container>
-        <Grid container item lg={3} ss={4} xs={12}>
-        <Link to="/details" style={{textDecoration:'none',color:'inherit'}}>
-      <Post_daalne_or_show_walaPage 
-   
-      title={pp.title}
-      name={pp.name}
-      description={pp.description}/>
-      </Link>
-    </Grid>
-      </Grid>
-      
-    ))}
+{isLoading ?<CircularProgress/> :
+  <Grid container>
+  
+   <Grid  container item lg={10} ss={10} xs={12}><Posts posts={posts}/></Grid>
+     {<h2>{C}</h2>}
+
+</Grid>
+}
+<a href='#'><KeyboardArrowUpIcon className={classes.upward}/></a>
     </>
   
       

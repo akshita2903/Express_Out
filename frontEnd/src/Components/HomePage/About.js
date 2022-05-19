@@ -1,4 +1,5 @@
 import React from 'react'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { Box,makeStyles,Typography } from '@material-ui/core';
 import Banner from './Banner'
 const useStyles =makeStyles({
@@ -15,7 +16,15 @@ detail:{
 span_s:{
     color:'black',
     fontSize:'21px'
-}
+},
+upward:{
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    border: '1px solid grey',
+    padding: '10px',
+    float:'right'
+  
+   },
 });
 export default function About() {
     const classes=useStyles();
@@ -35,6 +44,7 @@ export default function About() {
            who are having career pressure by telling them how one dealt with this when they were in that situation.
            To give some relaxation,the platform for poery lovers is also there.:)</Typography>
        </Box>
+       <a href='#'><KeyboardArrowUpIcon className={classes.upward}/></a>
    </Box>
   )
 }

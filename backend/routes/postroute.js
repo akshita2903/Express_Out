@@ -3,13 +3,16 @@ const asyncHandler=require('express-async-handler');
 const router=express.Router();
 const Post=require('../models/postsModel');
 
+const User=require('../models/userModel')
+
 
 //CREATE
 router.post('/create',asyncHandler(async(req,res)=>{
     const newPost=new Post(req.body);
-
+// console.log(req.body +":Cerate")
     try{
-        const savedPost=newPost.save();
+        const savedPost= await newPost.save()
+        // console.log(savedPost+" asve sjdjkd");
         res.status(200).json({
 
             savedPost,
@@ -17,89 +20,92 @@ router.post('/create',asyncHandler(async(req,res)=>{
         });
     }
     catch(err){
-        res.status(500).json({
-            message:"Something Went Wrong!!"
-        });
+        // console.log(req.body+" data");
+        console.log("Error :"+err)
+        res.status(400).send(err);
     }
 }));
 
 //UPDATE
-router.post("/update/:id",asyncHandler(async(req,res)=>{
+router.put("/update/:id",asyncHandler(async(req,res)=>{
+    const post=await Post.findById(req.params.id);
+  post.title=req.body.title;
+  post.description=req.body.description;
     try{
-const post=await Post.findById(req.params.id);
-if(post.name === req.body.name){
-    
+const updatedPost=await post.save();
 
-try{
-const updatedPost=await Post.findByIdAndUpdate(req.params.id,{
-    $set:req.body,
-},
-{
-    new:true
-});
-res.status(200).json({
-    updatedPost,
-    message:"You succeeded in changing your views"
-});
-}
-catch(err){
-    res.status(500).json({
-        message:"Something Went Wrong!!"
-    })
-}
-}
-else{
-    res.status(401).json({
-        message:"You can change your Own Views Only"
-    })
-}
-    }
+    
+    
+  
+    res.status(200).json({
+        _id:updatedPost._id,
+        title:updatedPost.title,
+        description:updatedPost.description,
+
+      
+    });
+        }
+    
     catch(err){
-        res.status(500).json({
-            message:"Something Went Wrong!!"
-        })
+        console.log("Update error "+err);
+        res.status(400).send(err);
     }
-}))
+}));
 
 //DELETE
 router.delete("/delete/:id",asyncHandler(async(req,res)=>{
     try{
 const post=await Post.findById(req.params.id);
-if(post.name === req.body.name){
+await post.delete();
+res.status(200).json("Post deleted..");
     
 
-try{
-await post.delete();
-res.send(200).json({
-    message:"You deleted your Own View"
-})
-}
-catch(err){
-    res.status(500).json({
-        message:"Something Went Wrong!!"
-    })
-}
-}
-else{
-    res.status(401).json({
-        message:"You can delete your Own Views Only"
-    })
-}
     }
     catch(err){
-        res.status(500).json({
-            message:"Something Went Wrong!!"
-        })
+res.status(400).json("Try after Sometime")
     }
-}))
+}));
 
 
-//GET Users Post
+
+
+//GET USERS POSTS
+router.get('/myPosts/:id',asyncHandler(async(req,res)=>{
+  
+  try{
+    const user=await User.findById(req.params.id);
+
+    const{name}=user;
+    
+//  console.log(name+"  :names")
+    // console.log(name +" name");
+    try{
+        const posts=await Post.find({name});
+        // console.log("Posts   : "+posts);
+        if(posts){
+            res.status(200).send(posts);
+        }
+        else{
+            res.status(201).send("Try Later");
+        }
+    }
+    catch(err){
+        res.status(400).send("Please,Try After Sometime");
+    }
+    }
+    catch(err){
+        res.status(400).send("try later")
+    }
+
+}));
+
+
+//GET Posts using ID
 
 router.get("/detail/:id",asyncHandler(async(req,res)=>{
     try{
 const post=await Post.findById(req.params.id);
-// console.log(post)
+//  console.log(post+"called  ")
 res.status(200).json(post);
     }
     catch(err){
