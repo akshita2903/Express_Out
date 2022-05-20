@@ -7,7 +7,7 @@ import BorderColorTwoToneIcon from '@material-ui/icons/BorderColorTwoTone';
  import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
  import {Link,useLocation } from 'react-router-dom'
  import { Context } from '../../Context/Context';
- 
+ import {PostUrl} from '../../Urls/API';
  import axios from 'axios'
 const useStyles=makeStyles({
   image:{
@@ -96,7 +96,7 @@ export default function Puri_post_dikhane_wala() {
    const id=location.pathname.split("/")[2];
    const fetchPosts =async()=>{
      setLoading(true);
-    const res=await axios.get(`/api/post/detail/${id}`);
+    const res=await axios.get(`${PostUrl}/api/post/detail/${id}`);
     setLoading(false);
     //console.log(res.data);
   setDetail(res.data)
@@ -130,7 +130,7 @@ export default function Puri_post_dikhane_wala() {
          }
        try{
          setLoading(true);
-         const res=await axios.put(`/api/post/update/${detail._id}`,{
+         const res=await axios.put(`${PostUrl}/api/post/update/${detail._id}`,{
          
            title,
            description
@@ -160,7 +160,7 @@ alert("try after Sometime");
         if(permission){
         try{
 setLoading(true);
-          const res=await axios.delete(`/api/post/delete/${detail._id}`);
+          const res=await axios.delete(`${PostUrl}/api/post/delete/${detail._id}`);
           setLoading(false);
           if(res.status === 200)
           {

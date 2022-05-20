@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './login.css';
+import {AuthUrl} from '../../Urls/API';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from 'axios';
 import { Context } from '../../Context/Context';
@@ -43,7 +44,7 @@ setDetail((prev)=>{
     }
     try{
       setLoading(true);
-      const res=await axios.put('/api/auth/changePassW',{
+      const res=await axios.put(`${AuthUrl}/api/auth/changePassW`,{
         email,
         password,
       });

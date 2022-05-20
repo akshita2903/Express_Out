@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {Context} from '../../Context/Context';
-
+import {PostUrl} from '../../Urls/API';
 // import {useNavigate} from 'react-router-dom'
 import {Box,makeStyles,Typography,FormControl,InputBase,Button, TextareaAutosize} from '@material-ui/core'
 import axios from 'axios'
@@ -73,7 +73,7 @@ const[isLoading,setLoading]=React.useState();
         }
       }
       const res=await axios.post(
-        "/api/post/create",
+        `${PostUrl}/api/post/create`,
         {
        name:user.name,
       

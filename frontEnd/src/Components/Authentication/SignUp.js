@@ -1,5 +1,6 @@
 import React from 'react'
-import './login.css'
+import './login.css';
+import {AuthUrl} from '../../Urls/API';
 import axios from 'axios';
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -65,7 +66,7 @@ const config={
   }
 }
 const res=await axios.post(
-  "/api/auth/signup",
+  `${AuthUrl}/api/auth/signup`,
   {
  name, email,password
 },
