@@ -25,7 +25,7 @@ function Posts({posts}) {
       <Grid item lg={4} ss={6} xs={12}>
         <Link to={`/details/${pp._id}`} style={{textDecoration:'none',color:'inherit'}}>
       <Post_daalne_or_show_walaPage 
-   Key={pp._id}
+   key={pp._id}
       title={pp.title}
       name={pp.name}
       description={pp.description}/>
