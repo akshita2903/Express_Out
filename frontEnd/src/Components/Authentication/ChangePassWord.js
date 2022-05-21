@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import './login.css';
-import {AuthUrl} from '../../Urls/API';
+
 import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from 'axios';
 import { Context } from '../../Context/Context';
 
  function ChangePassword() {
   const[text,setText]=React.useState("Password");
-
+ 
 const{dispatch}=useContext(Context);
   const[display,setDisplay]=React.useState("show");
  const[isLoading,setLoading]=React.useState();
@@ -44,7 +44,7 @@ setDetail((prev)=>{
     }
     try{
       setLoading(true);
-      const res=await axios.put(`${AuthUrl}/api/auth/changePassW`,{
+      const res=await axios.put('/api/auth/changePassW',{
         email,
         password,
       });

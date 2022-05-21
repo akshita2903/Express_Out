@@ -1,6 +1,6 @@
 import React from 'react'
 import './login.css';
-import {AuthUrl} from '../../Urls/API';
+
 import axios from 'axios';
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -11,7 +11,7 @@ export default function SignUp() {
     password:"",
     confirmPassword:""
   });
-
+ 
   const[text,setText]=React.useState("password");
 
 const[E,setE]=React.useState("");
@@ -36,7 +36,7 @@ setDetail((prev)=>{
  async function handleSubmit(e){
   e.preventDefault();
     const {name,email,password,confirmPassword}=detail;
-    console.log(name+" "+email+" "+password);
+    // console.log(name+" "+email+" "+password);
     if(!name){
       setN("User Name is Required");
       return ;
@@ -66,7 +66,7 @@ const config={
   }
 }
 const res=await axios.post(
-  `${AuthUrl}/api/auth/signup`,
+  '/api/auth/signup',
   {
  name, email,password
 },

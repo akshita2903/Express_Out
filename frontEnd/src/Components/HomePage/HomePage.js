@@ -5,7 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import{Button,makeStyles} from '@material-ui/core';
-import {PostUrl} from '../../Urls/API';
+
 import Posts from './Posts'
 import {Grid} from '@material-ui/core'
 const useStyle=makeStyles({
@@ -37,13 +37,16 @@ upward:{
 });
 export default function HomePage() {
   const classes=useStyle();
+
+ 
   const[posts,setPostss]=React.useState([]);
   const[isLoading,setLoading]=React.useState();
   const fetchPosts =async()=>{
     setLoading(true);
-  const res=await axios.get(`${PostUrl}/api/post/getAlUrl`);
+
+  const res=await axios.get('/api/post/getAll');
   setLoading(false);
-  console.log("All "+res.data);
+  // console.log("All "+res.data);
   setPostss(res.data)
   }
     React.useEffect(()=>{

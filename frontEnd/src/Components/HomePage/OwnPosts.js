@@ -8,7 +8,7 @@ import Banner from './Banner'
 import {Grid,Button,makeStyles} from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { Context } from '../../Context/Context'
-import {PostUrl} from '../../Urls/API';
+
 const useStyle=makeStyles({
   
 upward:{
@@ -23,6 +23,7 @@ upward:{
 });
 function OwnPosts() {
 const classes=useStyle();
+
 //const history=useNavigate();
 const{user}=useContext(Context);
 
@@ -32,7 +33,7 @@ const[C,setC]=React.useState("");
  const fetchPost=async ()=>{
    console.log(user._id);
    setLoading(true);
-  const res=await axios.get(`${PostUrl}/api/post/myPosts/${user._id}`
+  const res=await axios.get(`/api/post/myPosts/${user._id}`
 );
 setLoading(false)
   const{data}=res;

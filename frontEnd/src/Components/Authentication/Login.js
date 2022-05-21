@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react'
 import './login.css';
-import {AuthUrl} from '../../Urls/API';
+
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {Link } from 'react-router-dom'
 import axios from 'axios';
@@ -13,7 +13,7 @@ export default function Login() {
 let id;
 const[text,setText]=React.useState("password");
 const[W,setW]=React.useState("");
-
+const URL=process.env.API_URL;
 const[display,setDisplay]=React.useState('show');
   const [detail,setDetail]=React.useState({
     //name:'',
@@ -52,7 +52,7 @@ setDetail((prev)=>{
       console.log("try login")
 setLoading(true);
 const res=await axios.post(
-  "/api/auth/login",
+ '/api/auth/login',
   {
   email,password
 },
@@ -60,7 +60,7 @@ const res=await axios.post(
 setLoading(false);
 console.log("Response is "+res)
 
-console.log(res+" response");
+// console.log(res+" response");
 
 if(res.status === 201){
   // alert("Email does not exist");
