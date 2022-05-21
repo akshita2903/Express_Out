@@ -2,7 +2,7 @@ import React from 'react'
 
 import Post_daalne_or_show_walaPage from './Post_daalne_or_show_walaPage'
 import {Grid} from '@material-ui/core'
-import { Link ,useLocation} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 function Posts({posts}) {
 
 

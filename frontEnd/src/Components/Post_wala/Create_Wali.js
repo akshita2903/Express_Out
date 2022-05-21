@@ -53,7 +53,7 @@ marginTop:'5px',
 
 export default function Create_Wali() {
    const classes=useStyle();
-  
+   const URL='https://express-itt.herokuapp.com/'
    
    const{user}=useContext(Context);
 const[isLoading,setLoading]=React.useState();
@@ -75,7 +75,7 @@ const[isLoading,setLoading]=React.useState();
         }
       }
       const res=await axios.post(
-       '/api/post/create',
+       `${URL}api/post/create`,
         {
        name:user.name,
       

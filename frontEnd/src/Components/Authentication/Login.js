@@ -47,18 +47,18 @@ setDetail((prev)=>{
       W("PassWord Required");
       return ;
     }
-    console.log(email+" "+password);
+    // console.log(email+" "+password);
     try{
       console.log("try login")
 setLoading(true);
 const res=await axios.post(
- '/api/auth/login',
+ 'https://express-itt.herokuapp.com/api/auth/login',
   {
   email,password
 },
 );
 setLoading(false);
-console.log("Response is "+res)
+// console.log("Response is "+res)
 
 // console.log(res+" response");
 
@@ -69,7 +69,7 @@ if(res.status === 201){
   return ;
   // window.location.replace('/signup');
 }
-console.log(isFetching+" fetching")
+// console.log(isFetching+" fetching")
 
 
 if(res.status === 200){
@@ -80,7 +80,7 @@ window.location.replace("/")
     }
     }
     catch(err){
-      console.log("Error: Catch me "+err);
+      // console.log("Error: Catch me "+err);
       dispatch({type:"LOGIN_FAILED"});
       setW("Something Went Wrong.Try AFter Sometime!!")
     }

@@ -1,6 +1,7 @@
 import React from 'react'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { Box,makeStyles,Typography } from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Banner from './Banner'
 const useStyles =makeStyles({
 title:{
@@ -25,6 +26,17 @@ upward:{
     float:'right'
   
    },
+   bottom:{
+       color:'#f12487',
+       textAlign:'center',
+       fontSize:'50px'
+   },
+   icon:{
+       fill:'#f12387',
+      fontSize:94,
+   
+       
+   }
 });
 export default function About() {
     const classes=useStyles();
@@ -42,7 +54,9 @@ export default function About() {
            the wants of their hearts ,so this website is giving them a platform where they can write their life experiences,
            anything that is impacting their mental state causing mental stress,they can also help other individuals
            who are having career pressure by telling them how one dealt with this when they were in that situation.
-           To give some relaxation,the platform for poery lovers is also there.:)</Typography>
+           </Typography>
+           <Typography className={classes.bottom}>Release The STRESS by Unleasing it  <FavoriteIcon className={classes.icon}/></Typography>
+          
        </Box>
        <a href='#'><KeyboardArrowUpIcon className={classes.upward}/></a>
    </Box>

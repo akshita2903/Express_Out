@@ -34,7 +34,7 @@ setDetail((prev)=>{
  async function handleSubmit(e){
     e.preventDefault();
     const {email,password,confirmPassword}=detail;
-    console.log(password+" "+confirmPassword);
+    // console.log(password+" "+confirmPassword);
     if(!email){
       setEmailW("Email is required");
     }
@@ -44,7 +44,8 @@ setDetail((prev)=>{
     }
     try{
       setLoading(true);
-      const res=await axios.put('/api/auth/changePassW',{
+
+      const res=await axios.put('https://express-itt.herokuapp.com/api/auth/changePassW',{
         email,
         password,
       });

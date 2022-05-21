@@ -23,7 +23,7 @@ upward:{
 });
 function OwnPosts() {
 const classes=useStyle();
-
+const URL='https://express-itt.herokuapp.com/'
 //const history=useNavigate();
 const{user}=useContext(Context);
 
@@ -33,7 +33,7 @@ const[C,setC]=React.useState("");
  const fetchPost=async ()=>{
    console.log(user._id);
    setLoading(true);
-  const res=await axios.get(`/api/post/myPosts/${user._id}`
+  const res=await axios.get(`${URL}api/post/myPosts/${user._id}`
 );
 setLoading(false)
   const{data}=res;

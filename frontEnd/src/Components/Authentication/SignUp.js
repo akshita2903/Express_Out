@@ -58,7 +58,7 @@ setDetail((prev)=>{
      return ;
     }
     try{
-      console.log("try")
+      // console.log("try")
       setLoading(true);
 const config={
   headers:{
@@ -66,7 +66,7 @@ const config={
   }
 }
 const res=await axios.post(
-  '/api/auth/signup',
+  'https://express-itt.herokuapp.com/api/auth/signup',
   {
  name, email,password
 },
