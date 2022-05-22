@@ -10,16 +10,14 @@ box_design:{
   display:'flex',
   alignItems:'center',
   flexDirection:'column',
-   height: 350,
-        '& > *': {
-            padding: '0 5px 5px 5px'
-        }
+   height: auto,
+        
     },
 image:{
    height:150, 
   width:'100%',
   objectFit:'cover',
-  borderRadius:'10px 10px 0 0',
+  borderRadius:10
   border:'1px solid #d3cede'
 },
 text:{
