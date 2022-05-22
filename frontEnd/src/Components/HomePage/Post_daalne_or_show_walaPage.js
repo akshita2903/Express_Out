@@ -10,7 +10,7 @@ box_design:{
   display:'flex',
   alignItems:'center',
   flexDirection:'column',
-   height: auto,
+   height: 'auto',
         
     },
 image:{
