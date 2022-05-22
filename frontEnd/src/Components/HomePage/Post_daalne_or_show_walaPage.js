@@ -4,24 +4,22 @@ import {Box, Typography,makeStyles} from '@material-ui/core'
 
 const useStyle=makeStyles({
 box_design:{
-  height:350,
   margin:20,
   borderRadius:10,
   border:'1px solid #d3cede',
   display:'flex',
   alignItems:'center',
   flexDirection:'column',
-
-float:'left'
-  
-  
-
-},
+   height: 350,
+        '& > *': {
+            padding: '0 5px 5px 5px'
+        }
+    },
 image:{
    height:150, 
   width:'100%',
   objectFit:'cover',
-  borderRadius:10,
+  borderRadius:'10px 10px 0 0',
   border:'1px solid #d3cede'
 },
 text:{
