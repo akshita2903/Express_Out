@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {Context} from '../../Context/Context';
-
+// import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 // import {useNavigate} from 'react-router-dom'
 import {Box,makeStyles,Typography,FormControl,InputBase,Button, TextareaAutosize} from '@material-ui/core'
 import axios from 'axios'
@@ -57,7 +57,9 @@ export default function Create_Wali() {
    
    const{user}=useContext(Context);
 const[isLoading,setLoading]=React.useState();
-  //  const history=useNavigate();
+  // //  const history=useNavigate();
+  // const { transcript, resetTranscript } = useSpeechRecognition();
+  // const [isListening, setIsListening] = React.useState(false);
    const[orPost,setPost]=React.useState({
      title:'',
      description:'',

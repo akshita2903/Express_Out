@@ -2,11 +2,14 @@ import React,{useContext} from 'react'
 import Banner from '../HomePage/Banner';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import MicIcon from '@material-ui/icons/Mic';
+import MicOffIcon from '@material-ui/icons/MicOff';
 import {makeStyles,Box,Typography,Grid,FormControl,Button,InputBase,TextareaAutosize} from '@material-ui/core';
 import BorderColorTwoToneIcon from '@material-ui/icons/BorderColorTwoTone';
  import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
  import {useLocation } from 'react-router-dom'
  import { Context } from '../../Context/Context';
+ import { useSpeechSynthesis } from "react-speech-kit";
 
  import axios from 'axios'
 const useStyles=makeStyles({
@@ -80,7 +83,15 @@ margin:'20px 0',
 
 
 
+ },
+ mic:{
+  backgroundColor: 'white',
+  borderRadius: '50%',
+  border: '1px solid grey',
+  padding: '10px',
+  color:'blue',
  }
+ 
     
 });
 export default function Puri_post_dikhane_wala() {
@@ -89,6 +100,10 @@ export default function Puri_post_dikhane_wala() {
    const{user}=useContext(Context);
   //  console.log("Hello "+(user ? user.name+" Email "+user.email :" User Looged nhi hua"))
    const[detail,setDetail]=React.useState({});
+   const[speaking,isSpeaking]=React.useState(false);
+   const { speak } = useSpeechSynthesis();
+
+  
    const location=useLocation();
    const[isLoading,setLoading]=React.useState();
   //  console.log(location.pathname.split("/")[2]);
@@ -179,6 +194,30 @@ setLoading(true);
       
       }
       /*Delete ends */
+
+      /*handle mic*/
+      const sayhello=()=>{
+        if(typeof window === 'undefined')
+        {
+          alert("Voice control Not supported!");
+          return ;
+        }
+        else{
+          console.log("speking ");
+       
+        const{title,description}=detail;
+        let words="";
+         if(!speaking)words="Title is "+title+" It expresses that "+description;
+         console.log(words+" hh ");
+         speak({ text:words});
+isSpeaking(p=>!p);
+       
+
+     
+         
+        }
+      }
+      /*mic handled*/
   return (
 <>
 
@@ -218,6 +257,8 @@ Isupdate?  <Box>
 
  }
 <a href='#'><KeyboardArrowUpIcon className={classes.upward}/></a>
+{ speaking?<Box><MicIcon className={classes.mic} onClick={sayhello}/></Box> :
+<Box><MicOffIcon className={classes.mic} onClick={sayhello}></MicOffIcon></Box>}
   </Box>
 
 
