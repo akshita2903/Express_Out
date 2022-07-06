@@ -2,7 +2,6 @@
   "name": "apni_dukaan",
   "version": "0.1.0",
   "private": true,
-
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.2",
@@ -18,6 +17,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-speech-kit": "^3.0.1",
+    "react-speech-recognition": "^3.9.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

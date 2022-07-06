@@ -69,11 +69,12 @@ res.status(400).json("Try after Sometime")
 
 
 
-//GET USERS POSTS
+//GET USERS POSTS by UserId
 router.get('/myPosts/:id',asyncHandler(async(req,res)=>{
   
   try{
     const user=await User.findById(req.params.id);
+
 
     const{name}=user;
     
@@ -129,7 +130,9 @@ res.status(200).json(
          message:"Something Wnet Wrong!!"
      })
  }
-}))
+}));
+
+//GET USER POSTS
 
 
 module.exports=router;
