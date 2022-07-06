@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import axios from 'axios'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Posts from './Posts'
+import Contents from './Contents'
 import Banner from './Banner'
 //import {useNavigate} from 'react-router-dom'
-import {Grid,Button,makeStyles} from '@material-ui/core'
+import {Grid,Button,makeStyles,Typography} from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { Context } from '../../Context/Context'
 
@@ -19,6 +19,13 @@ upward:{
   float:'right'
 
  },
+ text:{
+  textAlign:'center',
+  fontWeight:'bold',
+  fontSize:'20px',
+  AlignItems:'center',
+  textDecoration:'underline'
+ }
 
 });
 function OwnPosts() {
@@ -28,10 +35,10 @@ const URL='https://express-itt.herokuapp.com/'
 const{user}=useContext(Context);
 
 const[C,setC]=React.useState("");
-  const[posts,setPostss]=React.useState([]);
+  const[content,setContents]=React.useState([]);
   const[isLoading,setLoading]=React.useState();
- const fetchPost=async ()=>{
-   console.log(user._id);
+ const fetchContent=async ()=>{
+   
    setLoading(true);
   const res=await axios.get(`${URL}api/post/myPosts/${user._id}`
 );
@@ -42,24 +49,26 @@ setLoading(false)
     window.location.replace('/create');
   }
   if(res.status === 200){
-    setPostss(data);
+    setContents(data);
   }
  }
  React.useEffect(()=>{
-   fetchPost();
+   fetchContent();
  },[]);
 
  
   // let p=['a','b','c','d','e','f','g','h','i','j','k']
   return (
     <><Banner/>
+    <Typography className={classes.text}>My Contents</Typography>
     <Link to='/' style={{textDecoration:'none',color:'inherit'}}>
-<Button  variant='contained'>Back</Button>
+<Button  variant='contained' >Back</Button>
 </Link>
+
 {isLoading ?<CircularProgress/> :
   <Grid container>
   
-   <Grid  container item lg={10} ss={10} xs={12}><Posts posts={posts}/></Grid>
+  <Grid  container item lg={10} ss={10} xs={12}><Contents content={content}/></Grid>
      {<h2>{C}</h2>}
 
 </Grid>

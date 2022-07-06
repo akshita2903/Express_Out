@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import{Button,makeStyles} from '@material-ui/core';
 
-import Posts from './Posts'
+import Contents from './Contents'
 import {Grid} from '@material-ui/core'
 const useStyle=makeStyles({
   create:{
@@ -39,7 +39,7 @@ export default function HomePage() {
   const classes=useStyle();
 
  
-  const[posts,setPostss]=React.useState([]);
+  const[content,setcontents]=React.useState([]);
   const[isLoading,setLoading]=React.useState();
   const fetchPosts =async()=>{
     setLoading(true);
@@ -47,7 +47,7 @@ export default function HomePage() {
   const res=await axios.get('https://express-itt.herokuapp.com/api/post/getAll');
   setLoading(false);
   // console.log("All "+res.data);
-  setPostss(res.data)
+  setcontents(res.data)
   }
     React.useEffect(()=>{
   fetchPosts();
@@ -67,7 +67,7 @@ export default function HomePage() {
 {isLoading?<CircularProgress className={classes.bar}/>:
     <Grid container>
    
-       <Grid  container item lg={10} ss={10} xs={12}><Posts posts={posts}/></Grid>
+       <Grid  container item lg={10} ss={10} xs={12}><Contents content={content}/></Grid>
 
   
     </Grid>}

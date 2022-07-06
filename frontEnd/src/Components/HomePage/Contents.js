@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Post_daalne_or_show_walaPage from './Post_daalne_or_show_walaPage'
+import CardContent from './CardContent'
 import {Grid} from '@material-ui/core'
 import { Link } from 'react-router-dom'
-function Posts({posts}) {
+function Posts({content}) {
 
 
 //const[count,setCount]=React.useState(0);
@@ -21,10 +21,10 @@ function Posts({posts}) {
   // let p=['a','b','c','d','e','f','g','h','i','j','k']
   return (
     <>
-   { posts.map(pp => (
+   { content.map(pp => (
       <Grid item lg={4} ss={6} xs={12}>
         <Link to={`/details/${pp._id}`} style={{textDecoration:'none',color:'inherit'}}>
-      <Post_daalne_or_show_walaPage 
+      <CardContent 
    key={pp._id}
       title={pp.title}
       name={pp.name}
