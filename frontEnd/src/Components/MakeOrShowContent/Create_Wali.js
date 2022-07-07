@@ -56,10 +56,7 @@ export default function Create_Wali() {
    const URL='https://express-itt.herokuapp.com/'
    
    const{user}=useContext(Context);
-const[isLoading,setLoading]=React.useState();
-  // //  const history=useNavigate();
-  // const { transcript, resetTranscript } = useSpeechRecognition();
-  // const [isListening, setIsListening] = React.useState(false);
+
    const[orPost,setPost]=React.useState({
      title:'',
      description:'',
