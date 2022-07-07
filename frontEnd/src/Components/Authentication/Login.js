@@ -10,10 +10,10 @@ export default function Login() {
   const passwordRef=useRef();
   const[isLoading,setLoading]=React.useState();
   const{dispatch,isFetching}=useContext(Context);
-let id;
+
 const[text,setText]=React.useState("password");
 const[W,setW]=React.useState("");
-const URL=process.env.API_URL;
+
 const[display,setDisplay]=React.useState('show');
   const [detail,setDetail]=React.useState({
     //name:'',
