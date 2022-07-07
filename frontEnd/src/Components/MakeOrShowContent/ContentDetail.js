@@ -4,7 +4,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
-import {makeStyles,Box,Typography,Grid,FormControl,Button,InputBase,TextareaAutosize} from '@material-ui/core';
+import {makeStyles,Box,Typography,Grid,FormControl,Button,InputBase,TextareaAutosize,Slider} from '@material-ui/core';
 import BorderColorTwoToneIcon from '@material-ui/icons/BorderColorTwoTone';
  import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
  import {useLocation } from 'react-router-dom'
@@ -104,10 +104,12 @@ export default function Puri_post_dikhane_wala() {
   //  console.log("Hello "+(user ? user.name+" Email "+user.email :" User Looged nhi hua"))
    const[detail,setDetail]=React.useState({});
    const[isSpeaking,setSpeaking]=React.useState(false);
-  //  const { speak } = useSpeechSynthesis();
-const[status,setStatus]=React.useState("");
-  //  const msg = new SpeechSynthesisUtterance();
+ 
+
+    const msg = new SpeechSynthesisUtterance();
    const location=useLocation();
+   
+
    const[isLoading,setLoading]=React.useState();
   //  console.log(location.pathname.split("/")[2]);
   const[Isupdate,setUpdate]=React.useState(false)
@@ -197,8 +199,7 @@ setLoading(true);
 
       /*handle mic*/
       const sayhello=()=>{
-        console.log(" ello "+status);
-        console.log("Speaking  "+ isSpeaking);
+       
         setSpeaking(p=>!p);
     
    
@@ -207,17 +208,30 @@ setLoading(true);
         
       }
       const speakOrNot=()=>{
+        speechSynthesis.cancel();
+       
         if(isSpeaking)
     {
-     
-      setStatus("Coming Soon ... Till Then  Smile :)");
-      console.log("Bolo");
-    }
+      const{title,description,name}=detail;
+
+ 
+      msg.text="The Content written by"+name+".  expresses about "+title+".  It states that "+description;
+ 
+  msg.rate=0.85;
+    // console.log(speechRate+" speechhchddjd");
+     console.log(msg);
+    window.speechSynthesis.speak(msg); 
+    //  setStatus("Coming Soon ... Till Then  Smile :)");
+      // console.log("Bolo");
+    
+    
+  }
 
 else{    
   console.log("ruko  ");
-  setStatus(" ");
-      
+  speechSynthesis.pause();
+ 
+
     }
        
       }
@@ -269,7 +283,8 @@ Isupdate?  <Box>
 
  }
 <a href='#'><KeyboardArrowUpIcon className={classes.upward}/></a>
-{ isSpeaking?<Box><MicIcon className={classes.mic} onClick={sayhello}/>  <span style={{fontWeight:700,color:'#d4f1f9'}}>{status}</span></Box> :
+{ isSpeaking?<Box><MicIcon className={classes.mic} onClick={sayhello}/>   
+  </Box> :
 <Box><MicOffIcon className={classes.mic} onClick={sayhello}/></Box>}
   </Box>
 
