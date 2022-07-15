@@ -107,7 +107,7 @@ setPost({...orPost,[event.target.name]:event.target.value})
 
 <InputBase placeholder='title' className={classes.titlearea}  onChange={e=> onChangetit_desc(e)}
 name="title" 
-/><Button>Start</Button><Button>Stop</Button>
+/>
 <Button variant='contained' color='primary' onClick={handleSubmit}>Expressed</Button>
    </FormControl>
    <TextareaAutosize className={classes.textarea} minRows={10} placeholder='Write what u feel like or What you wanna express Out'

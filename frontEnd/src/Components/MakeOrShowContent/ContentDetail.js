@@ -111,7 +111,7 @@ export default function Puri_post_dikhane_wala() {
    
 
    const[isLoading,setLoading]=React.useState();
-  //  console.log(location.pathname.split("/")[2]);
+  
   const[Isupdate,setUpdate]=React.useState(false)
    const id=location.pathname.split("/")[2];
    const fetchPosts =async()=>{
@@ -214,15 +214,17 @@ setLoading(true);
     {
       const{title,description,name}=detail;
 
- 
-      msg.text="The Content written by"+name+".  expresses about "+title+".  It states that "+description;
- 
-  msg.rate=0.85;
-    // console.log(speechRate+" speechhchddjd");
-     console.log(msg);
-    window.speechSynthesis.speak(msg); 
-    //  setStatus("Coming Soon ... Till Then  Smile :)");
-      // console.log("Bolo");
+ let text="This is Written By "+name+". The author Expresses about "+title+"."+"It expresses out "+description+".";
+      speechSynthesis.cancel(); // if it errors, this clears out the error.
+// it was not working for length >=200,so splittted it by (.)
+    var sentences = text.split(".");
+    for (var i=0;i< sentences.length;i++)
+    {
+         var toSay = sayit();
+        toSay.text = sentences[i];
+        speechSynthesis.speak(toSay);
+    }
+
     
     
   }
@@ -235,6 +237,36 @@ else{
     }
        
       }
+      var sayit = function ()
+{
+    var msg = new SpeechSynthesisUtterance();
+
+   msg.rate=0.85;
+    msg.onstart = function (event) {
+
+        console.log("started");
+    };
+    msg.onend = function(event) {
+        // console.log('Finished in ' + event.elapsedTime + ' seconds.');
+    };
+    msg.onerror = function(event)
+    {
+
+        console.log('Errored ' + event);
+        alert("Some error occured!");
+    }
+    msg.onpause = function (event)
+    {
+        console.log('paused ' + event);
+
+    }
+    msg.onboundary = function (event)
+    {
+        console.log('onboundary ' + event);
+    }
+
+    return msg;
+}
       /*mic handled*/
       React.useEffect(()=>{
       
