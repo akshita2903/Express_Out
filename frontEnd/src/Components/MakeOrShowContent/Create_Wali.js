@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {Context} from '../../Context/Context';
-// import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-// import {useNavigate} from 'react-router-dom'
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+
 import {Box,makeStyles,Typography,FormControl,InputBase,Button, TextareaAutosize} from '@material-ui/core'
 import axios from 'axios'
 const useStyle=makeStyles((theme)=>({
@@ -10,7 +10,7 @@ image:{
 
         // background:`url(${'https://img.freepik.com/free-photo/close-up-laptop-spectacles-pen-diary-desk_23-2147879878.jpg?size=626&ext=jpg'})`,
         ,width:'100%',
-        height:'50vh',
+        height:'40vh',
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
@@ -25,13 +25,14 @@ image:{
     form:{
       display:'flex',
       flexDirection:'row',
-      marginTop:'5px'
+      marginTop:'5px',
+      
     },
     titlearea:{
-      color:'white',
+      color:'#f4239',
 fontSize:20, 
 border:'2px solid #332',
-borderRadius:2,
+borderRadius:1,
 flex:1,
 margin:'0 10px',
 
@@ -40,6 +41,7 @@ margin:'0 10px',
     },
     textarea:{
 width:'100%',
+
 border:'none',
 fontSize:'18px',
 marginTop:'5px',
@@ -50,7 +52,8 @@ marginTop:'5px',
     
   }));
  
-
+   //mic
+  
 export default function Create_Wali() {
    const classes=useStyle();
    const URL='https://express-itt.herokuapp.com/'
@@ -62,6 +65,7 @@ export default function Create_Wali() {
      description:'',
     
    });
+
    async function handleSubmit(e){
     e.preventDefault();
     const{title,description}=orPost;
@@ -93,7 +97,7 @@ window.location.replace('/');
    function onChangetit_desc(event){
 setPost({...orPost,[event.target.name]:event.target.value})
   }
-    // const url='https://img.freepik.com/free-photo/close-up-laptop-spectacles-pen-diary-desk_23-2147879878.jpg?size=626&ext=jpg'
+   
   return (
       <Box>
    <Box className={classes.image}>
@@ -103,10 +107,10 @@ setPost({...orPost,[event.target.name]:event.target.value})
 
 <InputBase placeholder='title' className={classes.titlearea}  onChange={e=> onChangetit_desc(e)}
 name="title" 
-/>
+/><Button>Start</Button><Button>Stop</Button>
 <Button variant='contained' color='primary' onClick={handleSubmit}>Expressed</Button>
    </FormControl>
-   <TextareaAutosize className={classes.textarea} minRows={7} placeholder='Write what u feel like or What you wanna express Out'
+   <TextareaAutosize className={classes.textarea} minRows={10} placeholder='Write what u feel like or What you wanna express Out'
    name="description" onChange={(e)=>onChangetit_desc(e)}/>
    </Box>
   )
