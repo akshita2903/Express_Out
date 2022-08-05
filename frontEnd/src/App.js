@@ -20,6 +20,7 @@ function App() {
   const {user}=useContext(Context);
   return (
    <>
+
    <BrowserRouter>
    <Header/>
    
