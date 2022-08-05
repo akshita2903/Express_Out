@@ -85,7 +85,7 @@ const Comments = ({ post }) => {
     const fetchComments =async()=>{
       setshowComments(true);
       setLoading(true);
-  
+  console.log("fetch ke andar");
     const res=await axios.get(`${URL}api/comments/getComments/${post._id}`);
     setLoading(false);
     // console.log("All "+res.data);
