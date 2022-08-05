@@ -14,6 +14,7 @@ const useStyle=makeStyles((theme)=>({
         flexDirection:'row',
         marginTop:'5px',
         color:'#c9dbe0',
+        
         textDecoration:'underline'
         
       },
@@ -151,8 +152,9 @@ const Comments = ({ post }) => {
   
     return (
         <Box>
+          
             <FormControl className={classes.form}>
-
+           
 <InputBase placeholder='Did it inspired You? Leave your views here....' className={classes.titlearea}
 onChange={(e)=> handleChange(e)}
 name="comment" value={comment.commented}

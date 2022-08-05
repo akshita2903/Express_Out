@@ -320,7 +320,7 @@ Isupdate?  <Box>
 
 
 {/**Comments Sections */}
-<span style={{color:'#c9dbe0'}}>Comments:</span>
+
 <Comments post={detail}/>
 
 

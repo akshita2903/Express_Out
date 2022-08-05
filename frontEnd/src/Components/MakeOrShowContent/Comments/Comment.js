@@ -71,7 +71,7 @@ const classes=useStyles();
                 
                
             <Typography><span style={{color:'aquamarine'}}>{comment.commented}</span>
-            { comment.name === user.name && <ClearIcon className={classes.icon}onClick={() => removeComment()} /> }
+            { user && comment.name === user.name && <ClearIcon className={classes.icon}onClick={() => removeComment()} /> }
             </Typography>
           
         </Box>
