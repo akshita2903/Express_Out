@@ -96,7 +96,7 @@ const Comments = ({ post }) => {
     const handleChange = (e) => {
         setComment({
             ...comment,
-            name: user.name,
+          
             postId: post._id,
             commented: e.target.value
         });
@@ -105,8 +105,11 @@ const Comments = ({ post }) => {
 //ADD A COMMENT
     const addComment = async(e) => {
       e.preventDefault();
+      if(user)
+      {
       const{name,postId,commented}=comment
     // console.log(name+" "+postId+" "+commented+" ghhh");
+    
     if(commented){
       try{
         setLoading(true);
@@ -149,6 +152,10 @@ const Comments = ({ post }) => {
     }
         // console.log("Added comment");
     }
+    else{
+     alert("Please login to Add Comment");
+    }
+  }
   
     return (
         <Box>
