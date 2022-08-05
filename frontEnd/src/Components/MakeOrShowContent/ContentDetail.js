@@ -1,14 +1,16 @@
 import React,{useContext} from 'react'
 import Banner from '../HomePage/Banner';
 import CircularProgress from "@material-ui/core/CircularProgress";
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
 import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
-import {makeStyles,Box,Typography,Grid,FormControl,Button,InputBase,TextareaAutosize,Slider} from '@material-ui/core';
+
+import {makeStyles,Box,Typography,Grid,FormControl,Button,InputBase,TextareaAutosize} from '@material-ui/core';
 import BorderColorTwoToneIcon from '@material-ui/icons/BorderColorTwoTone';
  import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
  import {useLocation } from 'react-router-dom'
  import { Context } from '../../Context/Context';
+ import Comments from './Comments/Comments';
 //  import { useSpeechSynthesis } from "react-speech-kit";
 
  import axios from 'axios'
@@ -62,15 +64,7 @@ const useStyles=makeStyles({
   cursor:'pointer',
   
  },
- upward:{
-  backgroundColor: 'white',
-  borderRadius: '50%',
-  border: '1px solid grey',
-  padding: '10px',
-  float:'right',
-  
-
- },
+ 
  heading:{
    fontSize:38,
    fontWeight:'bold',
@@ -92,13 +86,17 @@ margin:'20px 0',
   padding: '10px',
   color:'blue',
   marginBottom:'0px',
-  cursor:'pointer'
- }
+  cursor:'pointer',
+  float:'right'
+ },
+ 
+ 
  
     
 });
 export default function Puri_post_dikhane_wala() {
   const URL='https://express-itt.herokuapp.com/'
+ 
    const classes=useStyles();
    const{user}=useContext(Context);
   //  console.log("Hello "+(user ? user.name+" Email "+user.email :" User Looged nhi hua"))
@@ -112,7 +110,8 @@ export default function Puri_post_dikhane_wala() {
 
    const[isLoading,setLoading]=React.useState();
   
-  const[Isupdate,setUpdate]=React.useState(false)
+  const[Isupdate,setUpdate]=React.useState(false);
+ 
    const id=location.pathname.split("/")[2];
    const fetchPosts =async()=>{
      setLoading(true);
@@ -179,6 +178,7 @@ alert("try after Sometime");
         try{
 setLoading(true);
           const res=await axios.delete(`${URL}api/post/delete/${detail._id}`);
+       
           setLoading(false);
           if(res.status === 200)
           {
@@ -304,6 +304,9 @@ Isupdate?  <Box>
 </Grid> 
  :"" }
 { isLoading ? <CircularProgress/>:<Box><Typography className={classes.heading}>{detail.title}</Typography>
+{ isSpeaking?<Box><MicIcon className={classes.mic} onClick={sayhello}/>   
+  </Box> :
+<Box><MicOffIcon className={classes.mic} onClick={sayhello}/></Box>}
  <Box className={classes.subheading}>
  
    <Typography>By:<span style={{fontWeight:600}}>{detail.name}</span></Typography>
@@ -314,11 +317,15 @@ Isupdate?  <Box>
  </Typography></Box>}</Box>
 
  }
-<a href='#'><KeyboardArrowUpIcon className={classes.upward}/></a>
-{ isSpeaking?<Box><MicIcon className={classes.mic} onClick={sayhello}/>   
-  </Box> :
-<Box><MicOffIcon className={classes.mic} onClick={sayhello}/></Box>}
+
+
+{/**Comments Sections */}
+<span style={{color:'#c9dbe0'}}>Comments:</span>
+<Comments post={detail}/>
+
+
   </Box>
+
 
 
 

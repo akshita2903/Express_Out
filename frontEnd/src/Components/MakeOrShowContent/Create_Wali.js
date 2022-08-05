@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import {Context} from '../../Context/Context';
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
 import {Box,makeStyles,Typography,FormControl,InputBase,Button, TextareaAutosize} from '@material-ui/core'
 import axios from 'axios'
@@ -48,11 +47,11 @@ marginTop:'5px',
 '&:focus-visible':{
   outline:'none'
 }
-    }
-    
+    },
   }));
+    
  
-   //mic
+
   
 export default function Create_Wali() {
    const classes=useStyle();
@@ -65,6 +64,8 @@ export default function Create_Wali() {
      description:'',
     
    });
+  
+  
 
    async function handleSubmit(e){
     e.preventDefault();
@@ -108,10 +109,14 @@ setPost({...orPost,[event.target.name]:event.target.value})
 <InputBase placeholder='title' className={classes.titlearea}  onChange={e=> onChangetit_desc(e)}
 name="title" 
 />
+
+        
+       
 <Button variant='contained' color='primary' onClick={handleSubmit}>Expressed</Button>
    </FormControl>
+   
    <TextareaAutosize className={classes.textarea} minRows={10} placeholder='Write what u feel like or What you wanna express Out'
-   name="description" onChange={(e)=>onChangetit_desc(e)}/>
+   name="description" onChange={(e)=>onChangetit_desc(e)} />
    </Box>
   )
 }
