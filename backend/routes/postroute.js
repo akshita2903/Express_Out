@@ -2,7 +2,7 @@ const express=require('express');
 const asyncHandler=require('express-async-handler');
 const router=express.Router();
 const Post=require('../models/postsModel');
-
+const Comments=require('../models/commentModel');
 const User=require('../models/userModel')
 
 
@@ -55,8 +55,18 @@ const updatedPost=await post.save();
 //DELETE
 router.delete("/delete/:id",asyncHandler(async(req,res)=>{
     try{
+        //  console.log("andar");
 const post=await Post.findById(req.params.id);
 await post.delete();
+try{
+const commented=await Comments.findOneAndDelete({postId:req.params.id});
+
+}
+catch(err)
+{
+    console.log("error "+err);
+}
+
 res.status(200).json("Post deleted..");
     
 

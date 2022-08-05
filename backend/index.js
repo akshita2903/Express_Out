@@ -3,6 +3,7 @@ const cors=require('cors');
 const sample=require("./testing_data/sample")
 const authroute=require('./routes/authroute')
 const postroute=require('./routes/postroute')
+const commentroute=require('./routes/commentroute')
 const dotenv=require('dotenv');
 const app=express();
 dotenv.config();
@@ -32,7 +33,7 @@ app.get("/api/notes",(req,res)=>{
 //routers
  app.use('/api/auth',authroute);
  app.use('/api/post',postroute);
-
+app.use('/api/comments',commentroute);
 
 
  app.get('/',(req,res)=>{
