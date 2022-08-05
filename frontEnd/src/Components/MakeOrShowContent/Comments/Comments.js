@@ -85,7 +85,7 @@ const Comments = ({ post }) => {
     const fetchComments =async()=>{
       setshowComments(true);
       setLoading(true);
-  console.log("fetch ke andar");
+  // console.log("fetch ke andar");
     const res=await axios.get(`${URL}api/comments/getComments/${post._id}`);
     setLoading(false);
     // console.log("All "+res.data);
@@ -106,6 +106,7 @@ const Comments = ({ post }) => {
       e.preventDefault();
       const{name,postId,commented}=comment
     // console.log(name+" "+postId+" "+commented+" ghhh");
+    if(commented){
       try{
         setLoading(true);
         const config={
@@ -141,6 +142,10 @@ const Comments = ({ post }) => {
   alert("try later!!");
   
       }
+    }
+    else{
+      return ;
+    }
         // console.log("Added comment");
     }
   
