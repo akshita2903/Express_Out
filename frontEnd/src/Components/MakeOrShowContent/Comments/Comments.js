@@ -72,7 +72,7 @@ const Comments = ({ post }) => {
      const URL='https://express-itt.herokuapp.com/'
  
     const [comment, setComment] = React.useState({
-      name: '',
+      name:'',
       postId: '', 
       commented: ''
     });
@@ -98,7 +98,8 @@ const Comments = ({ post }) => {
             ...comment,
           
             postId: post._id,
-            commented: e.target.value
+            commented: e.target.value,
+         name:user?user.name:'a'
         });
         // console.log("Wrire c");
     }
@@ -107,9 +108,10 @@ const Comments = ({ post }) => {
       e.preventDefault();
       if(user)
       {
+
       const{name,postId,commented}=comment
     // console.log(name+" "+postId+" "+commented+" ghhh");
-    
+   
     if(commented){
       try{
         setLoading(true);
