@@ -69,7 +69,7 @@ const Comments = ({ post }) => {
     const classes=useStyle();
     const{user}=useContext(Context);
    
-     const URL='https://express-itt.herokuapp.com/'
+     const URL='http://localhost:5000/'
  
     const [comment, setComment] = React.useState({
       name:'',

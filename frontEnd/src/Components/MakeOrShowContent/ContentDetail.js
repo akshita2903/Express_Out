@@ -7,7 +7,7 @@ import MicOffIcon from '@material-ui/icons/MicOff';
 
 import {makeStyles,Box,Typography,Grid,FormControl,Button,InputBase,TextareaAutosize} from '@material-ui/core';
 import BorderColorTwoToneIcon from '@material-ui/icons/BorderColorTwoTone';
- import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
+ import DeleteIcon from '@material-ui/icons/Delete';
  import {useLocation } from 'react-router-dom'
  import { Context } from '../../Context/Context';
  import Comments from './Comments/Comments';
@@ -95,7 +95,7 @@ margin:'20px 0',
     
 });
 export default function Puri_post_dikhane_wala() {
-  const URL='https://express-itt.herokuapp.com/'
+  const URL='http://localhost:5000/'
  
    const classes=useStyles();
    const{user}=useContext(Context);
@@ -300,7 +300,7 @@ Isupdate?  <Box>
   {/* <Link to={`/update/${detail._id}`} style={{textDecoration:'none',color:'inherit'}}> */}
   <BorderColorTwoToneIcon color='primary' className={classes.icons} onClick={handleUpdate}  />
   {/* </Link> */}
-<DeleteSharpIcon color='secondary' className={classes.icons} onClick={handleDelete} />
+<DeleteIcon color='secondary' className={classes.icons} onClick={handleDelete} />
 </Grid> 
  :"" }
 { isLoading ? <CircularProgress/>:<Box><Typography className={classes.heading}>{detail.title}</Typography>

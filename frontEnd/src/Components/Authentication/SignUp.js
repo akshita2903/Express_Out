@@ -66,7 +66,7 @@ const config={
   }
 }
 const res=await axios.post(
-  'https://express-itt.herokuapp.com/api/auth/signup',
+  'http://localhost:5000/api/auth/signup',
   {
  name, email,password
 },

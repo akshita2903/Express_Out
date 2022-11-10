@@ -44,7 +44,7 @@ export default function HomePage() {
   const fetchPosts =async()=>{
     setLoading(true);
 
-  const res=await axios.get('https://express-itt.herokuapp.com/api/post/getAll');
+  const res=await axios.get('http://localhost:5000/api/post/getAll');
   setLoading(false);
   // console.log("All "+res.data);
   setcontents(res.data)

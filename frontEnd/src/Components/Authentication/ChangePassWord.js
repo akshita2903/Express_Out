@@ -45,7 +45,7 @@ setDetail((prev)=>{
     try{
       setLoading(true);
 
-      const res=await axios.put('https://express-itt.herokuapp.com/api/auth/changePassW',{
+      const res=await axios.put('http://localhost:5000/api/auth/changePassW',{
         email,
         password,
       });

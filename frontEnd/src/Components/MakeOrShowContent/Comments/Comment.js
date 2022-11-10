@@ -34,7 +34,7 @@ const useStyles=makeStyles({
  const Comment = ({ comment }) => {
 
 
-const URL='https://express-itt.herokuapp.com/'
+const URL='http://localhost:5000/'
     const {user}=useContext(Context);
     const removeComment = async () => {
        

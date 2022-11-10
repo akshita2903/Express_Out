@@ -52,7 +52,8 @@ setDetail((prev)=>{
       console.log("try login")
 setLoading(true);
 const res=await axios.post(
- 'https://express-itt.herokuapp.com/api/auth/login',
+  
+ 'http://localhost:5000/api/auth/login',
   {
   email,password
 },

@@ -1,4 +1,4 @@
-#secret
-.env
-/backend/.env
+
 /frontEnd/.env
+node_modules
+.env
