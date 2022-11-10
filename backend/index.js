@@ -11,7 +11,7 @@ const connectDB=require('./config/db');
 const { errorHandler, notFound } = require('./middleWares/error_MiddleWare');
 
 
-connectDB();
+  connectDB();
 app.use(express.json());
 app.use(cors());
 app.use((req,res,next)=>{
@@ -41,4 +41,4 @@ app.use('/api/comments',commentroute);
  })
  
 //creating first server
-app.listen(process.env.PORT || 5001,console.log("Server started on PORT 5000"));
+app.listen( process.env.PORT || 5000,console.log("Server started on PORT 5000"));

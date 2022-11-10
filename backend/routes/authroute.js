@@ -38,6 +38,7 @@ else{
 }
 }));
 router.post('/login',asyncHandler(async(req,res)=>{
+    console.log(req.email+" ");
 const {email,password}=req.body;
 try{
     // console.log(email+" backend "+password);
