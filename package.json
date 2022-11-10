@@ -1,5 +1,5 @@
 {
-  "name": "expressview",
+  "name": "express_out",
   "version": "1.0.0",
   "description": "An App to express yourself",
   "main": "index.js",
@@ -8,11 +8,22 @@
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm start\" \"npm run client\""
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshita2903/Express_Out.git"
+  },
   "author": "Akshita",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshita2903/Express_Out/issues"
+  },
+  "homepage": "https://github.com/akshita2903/Express_Out#readme",
   "dependencies": {
-    "concurrently": "^7.1.0",
-    "dotenv": "^16.0.0",
-    "nodemon": "^2.0.15"
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^7.5.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.0",
+    "nodemon": "^2.0.20"
   }
 }
