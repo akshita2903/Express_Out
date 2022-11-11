@@ -6,3 +6,5 @@
 
 2.Implemented <b>CRUD</b> functionality in the project.
 
+3. It uses REST API.
+
